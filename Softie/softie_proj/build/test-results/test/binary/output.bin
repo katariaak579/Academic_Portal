@@ -1,0 +1,478 @@
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course successfully added
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Student Enrolled in course
+Course added in Student table
+2020CSB1063
+Cg Updated Succesfully
+2020tst1111
+Cg Updated Succesfully
+
+generated
+Course does not exist
+Course successfully deleted
+ŠCan't connect to db ERROR: update or delete on table "instructor" violates foreign key constraint "offering_fid_fkey" on table "offering"
+G  Detail: Key (id)=(Tst_f1) is still referenced from table "offering".
+[/Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/crs_csv.csv
+£File not readjava.io.FileNotFoundException: /Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/crs_csv.csv (No such file or directory)
+Course does not exist
+MFile not readjava.io.FileNotFoundException: Nope (No such file or directory)
+Student already registered
+Student has been registered
+Instructor already present
+Course successfully added
+Course already added
+Course already added
+Course does not exist
+Prerequisite Added
+#Prerequisite Course does not exist
+#Prerequisite Course does not exist
+Course successfully deleted
+ŒCan't connect to db ERROR: update or delete on table "course" violates foreign key constraint "offering_course_id_fkey" on table "offering"
+F  Detail: Key (id)=(CSts2) is still referenced from table "offering".
+Student already registered
+Instructor already present
+Course successfully added
+Course offered successfully
+-Student has already taken the course in past
+'No such student in the course to grade
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+Course does not exist
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Student already registered
+Student successfully removed
+Student successfully removed
+[/Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/std_csv.csv
+£File not readjava.io.FileNotFoundException: /Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/std_csv.csv (No such file or directory)
+Student does not exist
+MFile not readjava.io.FileNotFoundException: Nope (No such file or directory)
+Student has been registered
+Student already registered
+Student successfully removed
+Student does not exist
+	Instructor successfully added
+	Instructor already present
+	 Instructor successfully removed
+	Instructor does not exist
+
+Instructor successfully added
+
+Instructor already present
+
+ Instructor successfully removed
+[/Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/flt_csv.csv
+£File not readjava.io.FileNotFoundException: /Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/resources/InputFiles/flt_csv.csv (No such file or directory)
+Instructor does not exist
+MFile not readjava.io.FileNotFoundException: Nope (No such file or directory)
+Student has been registered
+Student has been registered
+Instructor successfully added
+Instructor successfully added
+Course successfully added
+Course already added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Student already Enrolled
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Credits exceeded
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts4';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts4';
+Credits exceeded
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts5';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts5';
+Credits exceeded
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts6';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts6';
+Credits exceeded
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts7';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts7';
+Credits exceeded
+Grade updated succesfully
+'No such student in the course to grade
+'No such student in the course to grade
+'No such student in the course to grade
+'No such student in the course to grade
+'No such student in the course to grade
+'No such student in the course to grade
+2020CSB1063
+Cg Updated Succesfully
+2020tst1111
+Cg Updated Succesfully
+
+2020tst11
+Cg Updated Succesfully
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+null
+Core: 0 Electives: 0 BTP: 6
+Student can not Graduate yet
+Core: 0 Electives: 0 BTP: 0
+Student can not Graduate yet
+Student does not exist
+Course does not exist
+Course does not exist
+Course does not exist
+Course does not exist
+Course does not exist
+Course does not exist
+Course does not exist
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+ Instructor successfully removed
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course already added
+Prerequisite Added
+Course successfully added
+Course successfully deleted
+Course successfully deleted
+Course does not exist
+ Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course already added
+Prerequisite Added
+Course successfully added
+Course successfully deleted
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course successfully added
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts4';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts4';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts5';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts5';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts6';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts6';
+Student Enrolled in course
+Course added in Student table
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts7';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts7';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+Grade updated succesfully
+Grade updated succesfully
+Grade updated succesfully
+Grade updated succesfully
+Grade updated succesfully
+Grade updated succesfully
+2020CSB1063
+Cg Updated Succesfully
+
+2020tst11
+Cg Updated Succesfully
+2020tst1111
+Cg Updated Succesfully
++Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts2_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts3_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts4_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts5_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts6_2021_1";
+Table deleted successfully
+Course deleted from offering
++Course Successfully deoffered from Student
+drop table "CSts7_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+Student successfully removed
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+ Instructor successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+!No such course exist for grading
+'No such student in the course to grade
++Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course does not exist
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+PFile not readjava.io.FileNotFoundException: yee.csv (No such file or directory)
+£File not readjava.io.FileNotFoundException: /Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/java/org/example/Input_cases.csv (No such file or directory)
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
++Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course does not exist
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Student does not exist
+8.0
++Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+Student does not exist
+	CSts1: A
+View Grades
+Course does not exist
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student has been registered
+Student already registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Student does not exist
+8.0
+Course Dropped
+Student Does not exist
+Course not exist
+Course not exist
+!Student did not take this course
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course successfully added
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Course does not exist
+Grade updated succesfully
+#Prerequisite Course does not exist
+#Prerequisite Course does not exist
+Course successfully added
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+here
+Course offered successfully
+-Student has already taken the course in past
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+All data transferred
+"All data deleted from current sem
+Offer table emptied
+Course offered successfully
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Dselect prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Student Enrolled in course
+Course added in Student table
+Course does not exist
+Course does not exist
++Course Successfully deoffered from Student
+drop table "CSts3_2021_2";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+ Instructor successfully removed
+Student successfully removed
+Student successfully removed

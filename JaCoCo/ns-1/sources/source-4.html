@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > faculty_functionalities</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: faculty_functionalities (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">faculty_functionalities</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (116/116)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;import com.opencsv.CSVReader;
+&nbsp;
+&nbsp;import java.io.FileReader;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;public class faculty_functionalities{</b>
+&nbsp;
+&nbsp;    public static void offer_course(Connection c, Statement stmt, String code, String fid, double min_cg) throws SQLException {
+&nbsp;        ResultSet rs;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlis = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String yearis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String semis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlsys = &quot;select * from sysinfo&quot;;</b>
+<b class="fc">&nbsp;        String statusis = &quot;&quot;;</b>
+<b class="fc">&nbsp;            rs=stmt.executeQuery(sqlsys);</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                yearis = rs.getString(1);</b>
+<b class="fc">&nbsp;                semis = rs.getString(2);</b>
+<b class="fc">&nbsp;                statusis=rs.getString(3);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            int year = Integer.parseInt(yearis);</b>
+<b class="fc">&nbsp;            int sem = Integer.parseInt(semis);</b>
+<b class="fc">&nbsp;        sql = &quot;select count(*) from course where course.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;            String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                curr = rs.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Course does not exist&quot;);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                sql = &quot;select count(*) from offering where offering.course_id=&#39;&quot; + code + &quot;&#39; and offering.sem=&#39;&quot;+sem+&quot;&#39; and offering.year=&#39;&quot;+year+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                    rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;                    while (rs.next()) {</b>
+<b class="fc">&nbsp;                        curr = rs.getString(1);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    if (!curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;                        System.out.println(&quot;Course already offered&quot;);</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                            sql = &quot;insert into offering values (&#39;&quot; + code + &quot;&#39;,&#39;&quot; + fid + &quot;&#39;,&#39;&quot; + sem + &quot;&#39;,&#39;&quot; + year + &quot;&#39;,&quot; + min_cg + &quot;);&quot;;</b>
+&nbsp;//                            System.out.println(sql);
+&nbsp;//                            sql_add = &quot;select offer_course_table()&quot;;
+<b class="fc">&nbsp;                            stmt.execute(sql);</b>
+&nbsp;//                            stmt.execute(sql_add);
+<b class="fc">&nbsp;                            String tablename = code+&quot;_&quot;+year+&quot;_&quot;+sem;</b>
+<b class="fc">&nbsp;                            sqlis = &quot;select offer_course_table(&#39;&quot;+tablename+&quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;                            stmt.execute(sqlis);</b>
+<b class="fc">&nbsp;                            System.out.println(&quot;Course offered successfully&quot;);</b>
+&nbsp;                    }
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void enter_grade(Connection c, Statement stmt, String code, String fid, String entry_num,String grade) throws SQLException {
+&nbsp;        ResultSet rs,rs1,rs2,rs3,rs4,rs5,rs6;
+<b class="fc">&nbsp;        String yearis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String semis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlsys = &quot;select * from sysinfo&quot;;</b>
+<b class="fc">&nbsp;        String curr=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String add2=&quot;_current_course&quot;;</b>
+<b class="fc">&nbsp;        String curr_sem_name=&quot;\&quot;&quot;+entry_num+add2+&quot;\&quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            rs=stmt.executeQuery(sqlsys);</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                yearis = rs.getString(1);</b>
+<b class="fc">&nbsp;                semis = rs.getString(2);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;        String tablename = &quot;\&quot;&quot;+code+ &quot;_&quot; +yearis+ &quot;_&quot; +semis+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;        int year = Integer.parseInt(yearis);</b>
+<b class="fc">&nbsp;        int sem = Integer.parseInt(semis);</b>
+<b class="fc">&nbsp;        String sqlcode=&quot;select count(*) from offering where course_id=&#39;&quot;+code+&quot;&#39; and fid=&#39;&quot;+fid+&quot;&#39; and sem=&#39;&quot;+sem+&quot;&#39; and year=&#39;&quot;+year+&quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            rs1=stmt.executeQuery(sqlcode);</b>
+<b class="fc">&nbsp;            while (rs1.next()){</b>
+<b class="fc">&nbsp;                curr=rs1.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if(curr.equals(&quot;0&quot;)){</b>
+<b class="fc">&nbsp;                System.out.println(&quot;No such course exist for grading&quot;);</b>
+&nbsp;            }
+&nbsp;            else{
+<b class="fc">&nbsp;                String sqlstd=&quot;select count(*) from &quot;+curr_sem_name+&quot; where courses=&#39;&quot;+code+&quot;&#39; and remark&lt;&gt;&#39;DRP&#39;;&quot;;</b>
+<b class="fc">&nbsp;                    rs2=stmt.executeQuery(sqlstd);</b>
+<b class="fc">&nbsp;                    while (rs2.next()){</b>
+<b class="fc">&nbsp;                        curr=rs2.getString(1);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    if(curr.equals(&quot;0&quot;)){</b>
+<b class="fc">&nbsp;                        System.out.println(&quot;No such student in the course to grade&quot;);</b>
+&nbsp;                    }
+&nbsp;                    else{
+<b class="fc">&nbsp;                        String sqlgrd=&quot;update &quot;+curr_sem_name+&quot; set remark=&#39;&quot;+grade+&quot;&#39; where courses=&#39;&quot;+code+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                            stmt.execute(sqlgrd);</b>
+<b class="fc">&nbsp;                            String crs_chg=&quot;update &quot;+tablename+&quot; set grade=&#39;&quot;+grade+&quot;&#39; where roll_no=&#39;&quot;+entry_num+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                                stmt.execute(crs_chg);</b>
+&nbsp;
+<b class="fc">&nbsp;                            System.out.println(&quot;Grade updated succesfully&quot;);</b>
+&nbsp;
+&nbsp;
+&nbsp;                    }
+&nbsp;
+&nbsp;            }
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void enter_grade_csv(Connection c, Statement stmt, String path) throws SQLException {
+&nbsp;        try {
+<b class="fc">&nbsp;            FileReader filereader = new FileReader(path);</b>
+<b class="fc">&nbsp;            CSVReader csvreader= new CSVReader(filereader);</b>
+&nbsp;            String[] nextrecord;
+&nbsp;            String rollno,name,email,batch_id;
+&nbsp;
+<b class="fc">&nbsp;            while((nextrecord=csvreader.readNext())!=null)</b>
+&nbsp;            {
+<b class="fc">&nbsp;                rollno = nextrecord[0].toLowerCase();</b>
+<b class="fc">&nbsp;                name = nextrecord[1];</b>
+<b class="fc">&nbsp;                email=nextrecord[2];</b>
+<b class="fc">&nbsp;                batch_id=nextrecord[3];</b>
+&nbsp;
+<b class="fc">&nbsp;                enter_grade(c,stmt,rollno,name,email,batch_id);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            System.out.println(&quot;Added All&quot;);</b>
+<b class="fc">&nbsp;        }catch (Exception e){</b>
+<b class="fc">&nbsp;            System.out.println(&quot;File not read&quot;+e);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void deoffer_course(Connection c, Statement stmt, String code) throws SQLException {
+&nbsp;        ResultSet rs, rs1, rs2, rs3;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String yearis = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String semis = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlsys = &quot;select * from sysinfo&quot;;</b>
+<b class="fc">&nbsp;            rs = stmt.executeQuery(sqlsys);</b>
+<b class="fc">&nbsp;            String currsys = &quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                yearis = rs.getString(1);</b>
+<b class="fc">&nbsp;                semis = rs.getString(2);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;        int year = Integer.parseInt(yearis);</b>
+<b class="fc">&nbsp;        int sem = Integer.parseInt(semis);</b>
+<b class="fc">&nbsp;        int rows = 0;</b>
+&nbsp;//        sql = &quot;select count(*) from catalog where catalog.course_code=&#39;&quot; + code + &quot;&#39;;&quot;;
+<b class="fc">&nbsp;        sql = &quot;select count(*) from offering where offering.course_id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs1 = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;            String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs1.next()) {</b>
+<b class="fc">&nbsp;                curr = rs1.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Course does not exist&quot;);</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                String tname = &quot;\&quot;&quot;+ code +&quot;_&quot;+ year +&quot;_&quot;+ sem +&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;                String sqldef = &quot;select roll_no from &quot; + tname + &quot;;&quot;;</b>
+<b class="fc">&nbsp;                    rs3 = stmt.executeQuery(sqldef);</b>
+<b class="fc">&nbsp;                    stmt.setFetchSize(rows);</b>
+<b class="fc">&nbsp;                    List&lt;String&gt; sqls = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;                    while (rs3.next()) {</b>
+<b class="fc">&nbsp;                        curr = rs3.getString(1);</b>
+<b class="fc">&nbsp;                        String tname1 = &quot;\&quot;&quot; + curr + &quot;_current_course\&quot;&quot;;</b>
+<b class="fc">&nbsp;                        String sqlstd = &quot;update &quot; + tname1 + &quot; set remark=&#39;DRP&#39; where courses=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                        sqls.add(sqlstd);</b>
+<b class="fc">&nbsp;                    }</b>
+&nbsp;
+<b class="fc">&nbsp;                    for (String s : sqls) {</b>
+<b class="fc">&nbsp;                            stmt.execute(s);</b>
+<b class="fc">&nbsp;                            System.out.println(&quot;Course Successfully deoffered from Student&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;                    }</b>
+<b class="fc">&nbsp;                    String dropis = &quot;drop table &quot; + tname + &quot;;&quot;;</b>
+<b class="fc">&nbsp;                System.out.println(dropis);</b>
+&nbsp;
+<b class="fc">&nbsp;                        stmt.execute(dropis);</b>
+<b class="fc">&nbsp;                        System.out.println(&quot;Table deleted successfully&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;                    String rmv = &quot;delete from offering where course_id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;                        stmt.execute(rmv);</b>
+<b class="fc">&nbsp;                        System.out.println(&quot;Course deleted from offering&quot;);</b>
+&nbsp;//                        return &quot;Course deleted from offering&quot;;
+&nbsp;
+&nbsp;            }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-07 23:21</div>
+</div>
+</body>
+</html>

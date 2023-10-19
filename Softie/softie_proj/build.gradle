@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+apply plugin: 'application' // implicitly includes the java plugin
+
+sourceCompatibility = 1.11 // java version 11
+
+repositories {
+    mavenCentral()
+}
+
+application{
+    mainClassName='org.example.Main'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.postgresql:postgresql:42.2.27'
+    implementation 'com.opencsv:opencsv:4.6'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+run.standardInput=System.in;

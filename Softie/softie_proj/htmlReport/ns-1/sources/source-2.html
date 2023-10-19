@@ -1,0 +1,772 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > admin_functionalities</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: admin_functionalities (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">admin_functionalities</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89%
+  </span>
+  <span class="absValue">
+    (411/462)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;import com.opencsv.CSVReader;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Scanner;
+&nbsp;
+<b class="fc">&nbsp;public class admin_functionalities{</b>
+&nbsp;    public static void add_course(Connection c, Statement stmt, String code, String name, int l, int t, int p, int creds, String dept, String type,String pre) throws SQLException {
+&nbsp;        ResultSet rs,rs1;
+<b class="fc">&nbsp;        Scanner sc= new Scanner(System.in);</b>
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        sql = &quot;select count(*) from course where course.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Course already added&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;insert into course values (&#39;&quot; + code + &quot;&#39;,&#39;&quot; + name + &quot;&#39;,&#39;&quot; + l + &quot;&#39;,&#39;&quot; + t + &quot;&#39;,&#39;&quot; + p + &quot;&#39;,&#39;&quot; + creds + &quot;&#39;,&#39;&quot; + dept + &quot;&#39;,&#39;&quot; + type + &quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            int x=0;</b>
+<b class="fc">&nbsp;            if(!pre.equals(&quot;null&quot;)){</b>
+<b class="fc">&nbsp;                String[] split=pre.split(&quot;-&quot;);</b>
+<b class="fc">&nbsp;                for(String s:split){</b>
+<b class="fc">&nbsp;                    prereqis(c,stmt,code,s);</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            System.out.println(&quot;Course successfully added&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void remove_course(Connection c, Statement stmt, String code) throws SQLException {
+&nbsp;        ResultSet rs,rs1;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        sql = &quot;select count(*) from course where course.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Course does not exist&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;delete from course where course.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            String del=&quot;delete from prereq where prereq.course_id=&#39;&quot;+code+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            String del2=&quot;delete from prereq where prereq.prereq_id=&#39;&quot;+code+&quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            stmt.execute(del);</b>
+<b class="fc">&nbsp;            stmt.execute(del2);</b>
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Course successfully deleted&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void add_student(Connection c, Statement stmt, String entry_num, String name, String email, String batch_id , String login_k, double cgpa, int creds) throws SQLException {
+&nbsp;        ResultSet rs,rs1;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlis =&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sqlnew = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;//        sql = &quot;select count(*) from catalog where catalog.course_code=&#39;&quot; + code + &quot;&#39;;&quot;;
+<b class="fc">&nbsp;        sql = &quot;select count(*) from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Student already registered&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;insert into student values (&#39;&quot; + entry_num + &quot;&#39;,&#39;&quot; + name + &quot;&#39;,&#39;&quot; + email + &quot;&#39;,&#39;&quot; + batch_id + &quot;&#39;,&#39;&quot; + login_k + &quot;&#39;,&#39;&quot; + cgpa + &quot;&#39;,&#39;&quot; + creds + &quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;            String studis = entry_num + &quot;_all_course&quot;;</b>
+<b class="fc">&nbsp;            sqlis = &quot;select student_register(&#39;&quot; + studis + &quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;            String studnew = entry_num + &quot;_current_course&quot;;</b>
+<b class="fc">&nbsp;            sqlnew = &quot;select student_current(&#39;&quot; + studnew + &quot;&#39;);&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            stmt.execute(sqlis);</b>
+<b class="fc">&nbsp;            stmt.execute(sqlnew);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Student has been registered&quot;);</b>
+&nbsp;
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void remove_student(Connection c, Statement stmt, String code) throws SQLException {
+&nbsp;        ResultSet rs,rs1,rs2;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        String add= &quot;_all_course&quot;;</b>
+<b class="fc">&nbsp;        String add2=&quot;_current_course&quot;;</b>
+<b class="fc">&nbsp;        String tname3 = &quot;\&quot;&quot;+code+add+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;        String curr_sem_name=&quot;\&quot;&quot;+code+add2+&quot;\&quot;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        sql = &quot;select count(*) from student where student.entry_number=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Student does not exist&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;delete from student where student.entry_number=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            String drop=&quot;drop table &quot;+tname3+&quot;,&quot;+curr_sem_name+&quot;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            stmt.execute(drop);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Student successfully removed&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void add_faculty(Connection c, Statement stmt, String code, String name, String email, String dept, String psswd) throws SQLException {
+&nbsp;        ResultSet rs,rs1;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        sql = &quot;select count(*) from instructor where id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (!curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Instructor already present&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;insert into instructor values (&#39;&quot; + code + &quot;&#39;,&#39;&quot; + name + &quot;&#39;,&#39;&quot; + email + &quot;&#39;,&#39;&quot; + dept + &quot;&#39;,&#39;&quot; + psswd + &quot;&#39;);&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Instructor successfully added&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;    public static void remove_faculty(Connection c, Statement stmt, String code) throws SQLException {
+&nbsp;        ResultSet rs,rs1;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        rs1=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs1.next()){</b>
+<b class="fc">&nbsp;            statusis=rs1.getString(3);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        sql = &quot;select count(*) from instructor where instructor.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Instructor does not exist&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            sql = &quot;delete from instructor where instructor.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            stmt.execute(sql);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Instructor successfully removed&quot;);</b>
+&nbsp;//                    sqlcreate = &quot;  &quot;
+&nbsp;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static void prereqis(Connection c, Statement stmt, String code, String codepre) throws SQLException {
+&nbsp;        ResultSet rs;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        sql = &quot;select count(*) from course where course.id=&#39;&quot; + code + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Course does not exist&quot;);</b>
+&nbsp;        } else {
+&nbsp;
+<b class="fc">&nbsp;            String[] header = codepre.split(&quot;-&quot;);</b>
+<b class="fc">&nbsp;            for(String s:header){</b>
+<b class="fc">&nbsp;            String sqlis= &quot;select count(*) from course where course.id=&#39;&quot; + s + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs=stmt.executeQuery(sqlis);</b>
+<b class="fc">&nbsp;            String curris =&quot;&quot;;</b>
+<b class="fc">&nbsp;            while(rs.next()){</b>
+<b class="fc">&nbsp;                curris = rs.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if(curris.equals(&quot;0&quot;)){</b>
+<b class="fc">&nbsp;                System.out.println(&quot;Prerequisite Course does not exist&quot;);</b>
+&nbsp;            }
+&nbsp;            else{
+<b class="fc">&nbsp;                String sqlch= &quot;select count(*) from prereq where prereq.course_id=&#39;&quot; + code + &quot;&#39; and prereq.prereq_id=&#39;&quot;+s+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                rs=stmt.executeQuery(sqlch);</b>
+<b class="fc">&nbsp;                while(rs.next()){</b>
+<b class="fc">&nbsp;                    curris = rs.getString(1);</b>
+&nbsp;                }
+<b class="fc">&nbsp;                if(!curris.equals(&quot;0&quot;)){</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Prerequisite already Added&quot;);</b>
+&nbsp;                }
+&nbsp;                else{
+<b class="fc">&nbsp;                    String sqladd = &quot;insert into prereq values (&#39;&quot;+code+&quot;&#39;,&#39;&quot;+s+&quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;                    stmt.execute(sqladd);</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;Prerequisite Added&quot;);</b>
+&nbsp;
+&nbsp;                }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void move_courses(Connection c, Statement stmt) throws SQLException {
+&nbsp;        ResultSet rs,rs1,rs2,rs3,rs4;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;            rs2=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;            while (!rs2.isClosed() &amp; rs2.next()){</b>
+<b class="fc">&nbsp;                statusis=rs2.getString(3);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        String allstd=&quot;select entry_number from student;&quot;;</b>
+<b class="fc">&nbsp;            rs3= stmt.executeQuery(allstd);</b>
+<b class="fc">&nbsp;            List&lt;String&gt; qwerty = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;            while (!rs3.isClosed() &amp;&amp; rs3.next()){</b>
+<b class="fc">&nbsp;                qwerty.add(rs3.getString(1));</b>
+&nbsp;            }
+<b class="fc">&nbsp;            for(String s:qwerty) {</b>
+<b class="fc">&nbsp;                String entry_num = s;</b>
+<b class="fc">&nbsp;                String add = &quot;_all_course&quot;;</b>
+<b class="fc">&nbsp;                String add2 = &quot;_current_course&quot;;</b>
+<b class="fc">&nbsp;                String tname3 = &quot;\&quot;&quot; + entry_num + add + &quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;                String curr_sem_name = &quot;\&quot;&quot; + entry_num + add2 + &quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;                int x = 0;</b>
+<b class="fc">&nbsp;                sql = &quot;select count(*) from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                List&lt;String&gt; sql_lst = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;                rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;                String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;                while (!rs.isClosed() &amp;&amp; rs.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs.getString(1);</b>
+&nbsp;                }
+<b class="fc">&nbsp;                    String a1 = &quot;&quot;;</b>
+<b class="fc">&nbsp;                    String b1 = &quot;&quot;;</b>
+<b class="fc">&nbsp;                    String c1 = &quot;&quot;;</b>
+<b class="fc">&nbsp;                    String d1 = &quot;&quot;;</b>
+<b class="fc">&nbsp;                    String sqlslt = &quot;select * from &quot; + curr_sem_name + &quot; where remark&lt;&gt;&#39;DRP&#39;;&quot;;</b>
+<b class="fc">&nbsp;                    rs1 = stmt.executeQuery(sqlslt);</b>
+<b class="fc">&nbsp;                    while (!rs1.isClosed() &amp;&amp; rs1.next()) {</b>
+<b class="fc">&nbsp;                        a1 = rs1.getString(1);</b>
+<b class="fc">&nbsp;                        b1 = rs1.getString(2);</b>
+<b class="fc">&nbsp;                        c1 = rs1.getString(3);</b>
+<b class="fc">&nbsp;                        d1 = rs1.getString(4);</b>
+<b class="fc">&nbsp;                        String addin = &quot;insert into &quot; + tname3 + &quot; values(&#39;&quot; + a1 + &quot;&#39;,&#39;&quot; + b1 + &quot;&#39;,&#39;&quot; + c1 + &quot;&#39;,&#39;&quot; + d1 + &quot;&#39;);&quot;;</b>
+<b class="fc">&nbsp;                        sql_lst.add(addin);</b>
+<b class="fc">&nbsp;                    }</b>
+&nbsp;
+<b class="fc">&nbsp;                    for (int i = 0; i &lt; sql_lst.size(); i++) {</b>
+<b class="fc">&nbsp;                        stmt.execute(sql_lst.get(i));</b>
+<b class="fc">&nbsp;                        x++;</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    if (x == sql_lst.size()) {</b>
+<b class="fc">&nbsp;                        System.out.println(&quot;All data transferred&quot;);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    String sqldel = &quot;delete from &quot; + curr_sem_name + &quot;;&quot;;</b>
+<b class="fc">&nbsp;                    stmt.execute(sqldel);</b>
+<b class="fc">&nbsp;                    System.out.println(&quot;All data deleted from current sem&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            String delo=&quot;delete from offering;&quot;;</b>
+<b class="fc">&nbsp;            stmt.execute(delo);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Offer table emptied&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public static void upt_cgpa(Connection c, Statement stmt) throws SQLException {
+&nbsp;        ResultSet rs,rs1,rs2,rs3,rs4,rs5,sys,nms;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        int creds_prev=0;</b>
+<b class="fc">&nbsp;        int creds_sem=0;</b>
+<b class="fc">&nbsp;        int creds_total=0;</b>
+<b class="fc">&nbsp;        double cg_prev=0.0;</b>
+<b class="fc">&nbsp;        double cg_imp=0.0;</b>
+<b class="fc">&nbsp;        double new_cg=0.0;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String add2=&quot;_current_course&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;        String abc=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        sys=stmt.executeQuery(abc);</b>
+<b class="fc">&nbsp;        while (sys.next()){</b>
+<b class="fc">&nbsp;            statusis= sys.getString(3);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        List&lt;String&gt; enums=new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        String naam=&quot;select entry_number from student&quot;;</b>
+<b class="fc">&nbsp;        nms=stmt.executeQuery(naam);</b>
+<b class="fc">&nbsp;        while (nms.next() &amp;&amp; !nms.isClosed()){</b>
+<b class="fc">&nbsp;            enums.add(nms.getString(1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        for(String s:enums) {</b>
+<b class="fc">&nbsp;            String entry_num=s;</b>
+<b class="fc">&nbsp;            System.out.println(entry_num);</b>
+<b class="fc">&nbsp;            String tname = &quot;\&quot;&quot;+entry_num+add2+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;            sql = &quot;select count(*) from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;            String curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                curr = rs.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;                String sqlcreds = &quot;select credits_total from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                rs1 = stmt.executeQuery(sqlcreds);</b>
+<b class="fc">&nbsp;                while (rs1.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs1.getString(1);</b>
+<b class="fc">&nbsp;                    creds_prev = Integer.parseInt(curr);</b>
+&nbsp;                }
+<b class="fc">&nbsp;                String sqlcg = &quot;select cgpa from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;&quot;;</b>
+<b class="fc">&nbsp;                rs2 = stmt.executeQuery(sqlcg);</b>
+<b class="fc">&nbsp;                while (rs2.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs2.getString(1);</b>
+<b class="fc">&nbsp;                    cg_prev = Double.parseDouble(curr);</b>
+&nbsp;                }
+<b class="fc">&nbsp;                String sql_curr_creds = &quot;select courses from &quot; + tname + &quot;;&quot;;</b>
+<b class="fc">&nbsp;                rs3 = stmt.executeQuery(sql_curr_creds);</b>
+<b class="fc">&nbsp;                List&lt;String&gt; sql_clist = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;                while (rs3.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs3.getString(1);</b>
+<b class="fc">&nbsp;                    sql_clist.add(curr);</b>
+&nbsp;                }
+<b class="fc">&nbsp;                for (int i = 0; i &lt; sql_clist.size(); i++) {</b>
+<b class="fc">&nbsp;                    String get_cred = &quot;select c from course where course.id=&#39;&quot; + sql_clist.get(i) + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                    int credis = 0;</b>
+<b class="fc">&nbsp;                    String grd = &quot;&quot;;</b>
+<b class="fc">&nbsp;                    int gtoc = 0;</b>
+<b class="fc">&nbsp;                    rs4 = stmt.executeQuery(get_cred);</b>
+<b class="fc">&nbsp;                    while (rs4.next()) {</b>
+<b class="fc">&nbsp;                        curr = rs4.getString(1);</b>
+<b class="fc">&nbsp;                        credis = Integer.parseInt(curr);</b>
+<b class="fc">&nbsp;                        creds_sem += credis;</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    String get_grade = &quot;select remark from &quot; + tname + &quot; where courses=&#39;&quot; + sql_clist.get(i) + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                    rs5 = stmt.executeQuery(get_grade);</b>
+<b class="fc">&nbsp;                    while (rs5.next()) {</b>
+<b class="fc">&nbsp;                        grd = rs5.getString(1);</b>
+&nbsp;                    }
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;                    if (grd.equals(&quot;A&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 10;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;A-&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 9;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;B&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 8;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;B-&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 7;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;C&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 6;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;C-&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 5;</b>
+<b class="fc">&nbsp;                    } else if (grd.equals(&quot;D&quot;)) {</b>
+<b class="fc">&nbsp;                        gtoc = 4;</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    cg_imp = gtoc * credis;</b>
+&nbsp;                }
+<b class="fc">&nbsp;                creds_total = creds_prev + creds_sem;</b>
+<b class="fc">&nbsp;                new_cg = cg_prev * creds_prev;</b>
+<b class="fc">&nbsp;                new_cg += cg_imp;</b>
+<b class="fc">&nbsp;                new_cg /= creds_total;</b>
+<b class="fc">&nbsp;                String uptcg = &quot;update student set cgpa=&quot; + new_cg + &quot; where entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                stmt.execute(uptcg);</b>
+<b class="fc">&nbsp;            String uptcreds = &quot;update student set credits_total=&quot; + creds_total + &quot; where entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            stmt.execute(uptcreds);</b>
+&nbsp;//            System.out.println(new_cg);
+<b class="fc">&nbsp;                System.out.println(&quot;Cg Updated Succesfully&quot;);</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void student_graduate(Connection c, Statement stmt, String entry_num) throws SQLException {
+&nbsp;        ResultSet rs,rs1,rs2,rs3,rs4,rs5,rs6,rs7;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String add= &quot;_all_course&quot;;</b>
+<b class="fc">&nbsp;        String tname3 = &quot;\&quot;&quot;+entry_num+add+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;        List&lt;String&gt; crs_list=new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        String curr=&quot;&quot;;</b>
+<b class="fc">&nbsp;        int elec_creds=0;</b>
+<b class="fc">&nbsp;        int core_creds=0;</b>
+<b class="fc">&nbsp;        int btp=0;</b>
+<b class="fc">&nbsp;        String dept=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        rs2=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (rs2.next()){</b>
+<b class="fc">&nbsp;            statusis=rs2.getString(3);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;//        sql = &quot;select count(*) from catalog where catalog.course_code=&#39;&quot; + code + &quot;&#39;;&quot;;
+<b class="fc">&nbsp;        sql = &quot;select count(*) from student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;        rs = stmt.executeQuery(sql);</b>
+<b class="fc">&nbsp;        curr = &quot;&quot;;</b>
+<b class="fc">&nbsp;        while (rs.next()) {</b>
+<b class="fc">&nbsp;            curr = rs.getString(1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (curr.equals(&quot;0&quot;)) {</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Student does not exist&quot;);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            String d_id = &quot;select dept_id from batch,student where student.entry_number=&#39;&quot; + entry_num + &quot;&#39; and batch.id=student.batch_id;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            rs2 = stmt.executeQuery(d_id);</b>
+<b class="fc">&nbsp;            while (rs2.next()) {</b>
+<b class="fc">&nbsp;                dept = rs2.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            String pass = &quot;select courses from &quot; + tname3 + &quot; where grade&lt;&gt;&#39;F&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;            rs1 = stmt.executeQuery(pass);</b>
+<b class="fc">&nbsp;            while (rs1.next()) {</b>
+<b class="fc">&nbsp;                curr = rs1.getString(1);</b>
+<b class="fc">&nbsp;                crs_list.add(curr);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            for (int i = 0; i &lt; crs_list.size(); i++) {</b>
+<b class="fc">&nbsp;                String ecreds = &quot;select sum(c) from course where course.id=&#39;&quot; + crs_list.get(i) + &quot;&#39; and course.category=&#39;PE&#39;;&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;                rs3 = stmt.executeQuery(ecreds);</b>
+<b class="fc">&nbsp;                while (rs3.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs3.getString(1);</b>
+<b class="fc">&nbsp;                    System.out.println(curr);</b>
+<b class="fc">&nbsp;                    int x = 0;</b>
+<b class="fc">&nbsp;                    if (curr == null) {</b>
+<b class="fc">&nbsp;                        x = 0;</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        x = Integer.parseInt(curr);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    elec_creds += x;</b>
+<b class="fc">&nbsp;                }</b>
+&nbsp;
+<b class="fc">&nbsp;                String ecreds2 = &quot;select sum(c) from course where course.id=&#39;&quot; + crs_list.get(i) + &quot;&#39; and course.category=&#39;PCE&#39; and course.dept_id&lt;&gt;&#39;&quot; + dept + &quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;                rs4 = stmt.executeQuery(ecreds2);</b>
+<b class="fc">&nbsp;                while (rs4.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs4.getString(1);</b>
+<b class="fc">&nbsp;                    int x = 0;</b>
+<b class="fc">&nbsp;                    if (curr == null) {</b>
+<b class="fc">&nbsp;                        x = 0;</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        x = Integer.parseInt(curr);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    elec_creds += x;</b>
+<b class="fc">&nbsp;                }</b>
+&nbsp;
+<b class="fc">&nbsp;                String ccreds = &quot;select sum(c) from course where course.id=&#39;&quot; + crs_list.get(i) + &quot;&#39; and course.category=&#39;PCE&#39; and course.dept_id=&#39;&quot; + dept + &quot;&#39;; &quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;                rs5 = stmt.executeQuery(ccreds);</b>
+<b class="fc">&nbsp;                while (rs5.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs5.getString(1);</b>
+<b class="fc">&nbsp;                    int x = 0;</b>
+<b class="fc">&nbsp;                    if (curr == null) {</b>
+<b class="fc">&nbsp;                        x = 0;</b>
+&nbsp;                    } else {
+<b class="nc">&nbsp;                        x = Integer.parseInt(curr);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    core_creds += x;</b>
+<b class="fc">&nbsp;                }</b>
+&nbsp;
+<b class="fc">&nbsp;                String cbtp = &quot;select sum(c) from course where course.id=&#39;&quot; + crs_list.get(i) + &quot;&#39; and course.category=&#39;BTP&#39; and course.dept_id=&#39;&quot; + dept + &quot;&#39;; &quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;                rs6 = stmt.executeQuery(cbtp);</b>
+<b class="fc">&nbsp;                while (rs6.next()) {</b>
+<b class="fc">&nbsp;                    curr = rs6.getString(1);</b>
+<b class="fc">&nbsp;                    int x = 0;</b>
+<b class="fc">&nbsp;                    if (curr == null) {</b>
+<b class="nc">&nbsp;                        x = 0;</b>
+&nbsp;                    } else {
+<b class="fc">&nbsp;                        x = Integer.parseInt(curr);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    btp += x;</b>
+<b class="fc">&nbsp;                }</b>
+&nbsp;
+&nbsp;            }
+<b class="fc">&nbsp;            System.out.println(&quot;Core: &quot; + core_creds + &quot; Electives: &quot; + elec_creds + &quot; BTP: &quot; + btp);</b>
+<b class="fc">&nbsp;            if(core_creds&gt;=3 &amp;&amp; elec_creds&gt;=3 &amp;&amp; btp&gt;=3){</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Student can be Graduated from the College&quot;);</b>
+<b class="nc">&nbsp;                remove_student(c,stmt,entry_num);</b>
+&nbsp;            }
+&nbsp;            else {
+<b class="fc">&nbsp;                System.out.println(&quot;Student can not Graduate yet&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void add_student_csv(Connection c, Statement stmt,String path) throws SQLException {
+<b class="fc">&nbsp;        String all=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String spl=&quot;,&quot;;</b>
+&nbsp;        try {
+<b class="fc">&nbsp;            FileReader filereader = new FileReader(path);</b>
+<b class="nc">&nbsp;            CSVReader csvreader= new CSVReader(filereader);</b>
+&nbsp;            String[] nextrecord;
+&nbsp;            String rollno,name,email,batch_id,password,cgpa,credits;
+&nbsp;
+<b class="nc">&nbsp;            while((nextrecord=csvreader.readNext())!=null)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                rollno = nextrecord[0].toLowerCase();</b>
+<b class="nc">&nbsp;                name = nextrecord[1];</b>
+<b class="nc">&nbsp;                email=nextrecord[2];</b>
+<b class="nc">&nbsp;                batch_id=nextrecord[3];</b>
+<b class="nc">&nbsp;                password = nextrecord[4];</b>
+<b class="nc">&nbsp;                cgpa=nextrecord[5];</b>
+<b class="nc">&nbsp;                credits=nextrecord[6];</b>
+<b class="nc">&nbsp;                int cre=Integer.parseInt(credits);</b>
+<b class="nc">&nbsp;                double cg=Double.parseDouble(cgpa);</b>
+<b class="nc">&nbsp;            add_student(c,stmt,rollno,name,email,batch_id,password,cg,cre);</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Added All&quot;);</b>
+<b class="fc">&nbsp;        }catch (Exception e){</b>
+<b class="fc">&nbsp;            System.out.println(&quot;File not read&quot;+e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void add_faculty_csv(Connection c, Statement stmt,String path) throws SQLException {
+&nbsp;        try {
+<b class="fc">&nbsp;            FileReader filereader = new FileReader(path);</b>
+<b class="nc">&nbsp;            CSVReader csvreader= new CSVReader(filereader);</b>
+&nbsp;            String[] nextrecord;
+&nbsp;            String rollno,name,email,batch_id,password;
+&nbsp;
+<b class="nc">&nbsp;            while((nextrecord=csvreader.readNext())!=null)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                rollno = nextrecord[0];</b>
+<b class="nc">&nbsp;                name = nextrecord[1];</b>
+<b class="nc">&nbsp;                email=nextrecord[2];</b>
+<b class="nc">&nbsp;                batch_id=nextrecord[3];</b>
+<b class="nc">&nbsp;                password = nextrecord[4];</b>
+<b class="nc">&nbsp;                add_faculty(c,stmt,rollno,name,email,batch_id,password);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            System.out.println(&quot;Added All&quot;);</b>
+<b class="fc">&nbsp;        }catch (Exception e){</b>
+<b class="fc">&nbsp;            System.out.println(&quot;File not read&quot;+e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void add_course_csv(Connection c, Statement stmt,String path) throws SQLException {
+&nbsp;        try {
+<b class="fc">&nbsp;            FileReader filereader = new FileReader(path);</b>
+<b class="nc">&nbsp;            CSVReader csvreader= new CSVReader(filereader);</b>
+&nbsp;            String[] nextrecord;
+&nbsp;            String a1,a2,a3,a4,a5,a6,a7,a8,a9;
+&nbsp;
+<b class="nc">&nbsp;            while((nextrecord=csvreader.readNext())!=null)</b>
+&nbsp;            {
+<b class="nc">&nbsp;                a1 = nextrecord[0];</b>
+<b class="nc">&nbsp;                a2 = nextrecord[1];</b>
+<b class="nc">&nbsp;                a3=nextrecord[2];</b>
+<b class="nc">&nbsp;                a4=nextrecord[3];</b>
+<b class="nc">&nbsp;                a5 = nextrecord[4];</b>
+<b class="nc">&nbsp;                a6=nextrecord[5];</b>
+<b class="nc">&nbsp;                a7=nextrecord[6];</b>
+<b class="nc">&nbsp;                a8=nextrecord[7];</b>
+<b class="nc">&nbsp;                a9=nextrecord[8];</b>
+<b class="nc">&nbsp;                int l=Integer.parseInt((a3));</b>
+<b class="nc">&nbsp;                int t=Integer.parseInt((a4));</b>
+<b class="nc">&nbsp;                int p=Integer.parseInt((a5));</b>
+<b class="nc">&nbsp;                int ca=Integer.parseInt((a6));</b>
+&nbsp;
+<b class="nc">&nbsp;                add_course(c,stmt,a1,a2,l,t,p,ca,a7,a8,a9);</b>
+&nbsp;
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Added All&quot;);</b>
+<b class="fc">&nbsp;        }catch (Exception e){</b>
+<b class="fc">&nbsp;            System.out.println(&quot;File not read&quot;+e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void generate_transcript(Connection c, Statement stmt, String s) throws SQLException, FileNotFoundException, UnsupportedEncodingException {
+&nbsp;        ResultSet rs,rs1,rs2,rs3,rs4;
+<b class="fc">&nbsp;        String sql = &quot;&quot;;</b>
+<b class="fc">&nbsp;        String statusis=&quot;&quot;;</b>
+<b class="fc">&nbsp;        String aadd = &quot;_transcript.txt&quot;;</b>
+<b class="fc">&nbsp;        String filename = &quot;&quot; + s + aadd + &quot;&quot;;</b>
+<b class="fc">&nbsp;        String sys=&quot;select * from sysinfo;&quot;;</b>
+<b class="fc">&nbsp;        rs2=stmt.executeQuery(sys);</b>
+<b class="fc">&nbsp;        while (!rs2.isClosed() &amp; rs2.next()){</b>
+<b class="fc">&nbsp;            statusis=rs2.getString(3);</b>
+&nbsp;        }
+<b class="fc">&nbsp;            String add= &quot;_all_course&quot;;</b>
+<b class="fc">&nbsp;            String add2=&quot;_current_course&quot;;</b>
+<b class="fc">&nbsp;            String tname3 = &quot;\&quot;&quot;+s+add+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;            String curr_sem_name=&quot;\&quot;&quot;+s+add2+&quot;\&quot;&quot;;</b>
+<b class="fc">&nbsp;            String proc=&quot;select * from &quot;+tname3+&quot;;&quot;;</b>
+<b class="fc">&nbsp;            PrintWriter writer = new PrintWriter(filename, &quot;UTF-8&quot;);</b>
+<b class="fc">&nbsp;            writer.println(&quot;Entry number of the  student: &quot; + s);</b>
+<b class="fc">&nbsp;            writer.println();</b>
+<b class="fc">&nbsp;            writer.println(</b>
+&nbsp;                    &quot;Courses the student has completed&quot; + &quot;      &quot; + &quot;Grades&quot; + &quot;    &quot; + &quot;Semester&quot; + &quot;    &quot; + &quot;Year&quot;);
+<b class="fc">&nbsp;            rs = stmt.executeQuery(proc);</b>
+<b class="fc">&nbsp;            writer.println();</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                String courses = rs.getString(1);</b>
+<b class="fc">&nbsp;                String grades = rs.getString(2);</b>
+<b class="fc">&nbsp;                String year = rs.getString(4);</b>
+<b class="fc">&nbsp;                String sem = rs.getString(3);</b>
+<b class="fc">&nbsp;                writer.println(&quot;             &quot; + courses + &quot;                        &quot; + grades + &quot;           &quot; + sem</b>
+&nbsp;                        + &quot;        &quot; + year);
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            writer.println();</b>
+<b class="fc">&nbsp;            writer.println(&quot;Courses the student is currently enrolled in&quot;);</b>
+<b class="fc">&nbsp;            writer.println();</b>
+<b class="fc">&nbsp;            proc = &quot;select * from &quot;+ curr_sem_name +&quot; where remark&lt;&gt;&#39;DRP&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs = stmt.executeQuery(proc);</b>
+<b class="fc">&nbsp;            while (rs.next()) {</b>
+<b class="fc">&nbsp;                String courses = rs.getString(1);</b>
+<b class="fc">&nbsp;                writer.println(&quot;                  &quot; + courses);</b>
+<b class="fc">&nbsp;            }</b>
+<b class="fc">&nbsp;            writer.println();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;generated&quot;);</b>
+<b class="fc">&nbsp;            String cgisis=&quot; select cgpa from student where entry_number=&#39;&quot;+s+&quot;&#39;; &quot;;</b>
+<b class="fc">&nbsp;            rs2=stmt.executeQuery(cgisis);</b>
+<b class="fc">&nbsp;            String hee=&quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs2.next()){</b>
+<b class="fc">&nbsp;                hee=rs2.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            double cg=Double.parseDouble(hee);</b>
+<b class="fc">&nbsp;            writer.println(&quot;Current CG is: &quot; + cg);</b>
+<b class="fc">&nbsp;            String credis=&quot;select credits_total from student where entry_number =&#39;&quot;+s+&quot;&#39;;&quot;;</b>
+<b class="fc">&nbsp;            rs2=stmt.executeQuery(credis);</b>
+<b class="fc">&nbsp;            String awd=&quot;&quot;;</b>
+<b class="fc">&nbsp;            while (rs2.next()){</b>
+<b class="fc">&nbsp;                awd=rs2.getString(1);</b>
+&nbsp;            }
+<b class="fc">&nbsp;        writer.println(&quot;Total Credits: &quot; + awd);</b>
+<b class="fc">&nbsp;            writer.close();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-01 18:57</div>
+</div>
+</body>
+</html>

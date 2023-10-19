@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.faculty_functionalitiesTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-01T13:26:58" hostname="Anubhavs-MacBook-Pro.local" time="0.23">
+  <properties/>
+  <testcase name="offer_course()" classname="org.example.faculty_functionalitiesTest" time="0.071"/>
+  <testcase name="enter_grade()" classname="org.example.faculty_functionalitiesTest" time="0.075"/>
+  <testcase name="enter_grade_csv()" classname="org.example.faculty_functionalitiesTest" time="0.031"/>
+  <testcase name="deoffer_course()" classname="org.example.faculty_functionalitiesTest" time="0.047"/>
+  <system-out><![CDATA[Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+Student successfully removed
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Instructor successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+No such course exist for grading
+No such student in the course to grade
+Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course does not exist
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+File not readjava.io.FileNotFoundException: yee.csv (No such file or directory)
+File not readjava.io.FileNotFoundException: /Users/anubhavkataria/Desktop/Softie/softie_proj/src/main/java/org/example/Input_cases.csv (No such file or directory)
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course does not exist
+Course offered successfully
+Course already offered
+Course does not exist
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course does not exist
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

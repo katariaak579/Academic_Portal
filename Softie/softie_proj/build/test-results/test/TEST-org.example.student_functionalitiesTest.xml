@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.student_functionalitiesTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-01T13:26:58" hostname="Anubhavs-MacBook-Pro.local" time="0.435">
+  <properties/>
+  <testcase name="get_cg()" classname="org.example.student_functionalitiesTest" time="0.126"/>
+  <testcase name="view_grades()" classname="org.example.student_functionalitiesTest" time="0.078"/>
+  <testcase name="drop_course()" classname="org.example.student_functionalitiesTest" time="0.068"/>
+  <testcase name="enroll_course()" classname="org.example.student_functionalitiesTest" time="0.147"/>
+  <system-out><![CDATA[Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Student does not exist
+8.0
+Course Successfully deoffered from Student
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+Offer table emptied
+Student does not exist
+CSts1: A
+View Grades
+Course does not exist
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student has been registered
+Student already registered
+Instructor successfully added
+Course successfully added
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Student does not exist
+8.0
+Course Dropped
+Student Does not exist
+Course not exist
+Course not exist
+Student did not take this course
+drop table "CSts1_2021_1";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student successfully removed
+Student has been registered
+Student has been registered
+Instructor successfully added
+Course successfully added
+Course successfully added
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+select prereq.prereq_id from prereq where prereq.course_id='CSts1';
+Student Enrolled in course
+Course added in Student table
+Course does not exist
+Grade updated succesfully
+Prerequisite Course does not exist
+Prerequisite Course does not exist
+Course successfully added
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+Offer table emptied
+here
+Course offered successfully
+Student has already taken the course in past
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts2';
+select prereq.prereq_id from prereq where prereq.course_id='CSts2';
+Student Enrolled in course
+Course added in Student table
+Grade updated succesfully
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+All data transferred
+All data deleted from current sem
+Offer table emptied
+Course offered successfully
+select prereq.prereq_id from prereq where prereq.course_id='CSts3';
+select prereq.prereq_id from prereq where prereq.course_id='CSts3';
+Student Enrolled in course
+Course added in Student table
+Course does not exist
+Course does not exist
+Course Successfully deoffered from Student
+drop table "CSts3_2021_2";
+Table deleted successfully
+Course deleted from offering
+Course successfully deleted
+Course successfully deleted
+Course successfully deleted
+Instructor successfully removed
+Student successfully removed
+Student successfully removed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

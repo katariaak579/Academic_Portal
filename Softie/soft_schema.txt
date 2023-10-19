@@ -1,0 +1,74 @@
+create table department(
+    id char(4),
+    name varchar(30),
+
+    primary key (id)
+);
+
+
+create table batch(
+    id char(10),
+    year int,
+    dept_id char(4),
+
+    primary key (id),
+    foreign key (dept_id) references department(id)
+);
+
+
+create table student(
+    entry_number char(11),
+    name varchar(100),
+    email char(24),
+    batch_id char(10),
+    
+    primary key(entry_number),
+    foreign key (batch_id) references batch(id)
+);
+
+
+create table course(
+    id char(5),
+    name varchar(30),
+    l int,
+    t int,
+    p int,
+    c int,
+    dept_id char(4),
+
+    primary key (id),
+    foreign key (dept_id) references department(id)
+);
+
+
+create table instructor(
+    id char(11),
+    name varchar(100),
+    email varchar(50),
+    dept_id char(4),
+
+    primary key (id),
+    foreign key (dept_id) references department(id)
+);
+
+
+create table offering(
+    course_id char(5),
+    fid char(11),
+    sem int,
+    year int,
+    min_cg float,
+   
+    primary key (course_id,sem,year),
+    foreign key (course_id) references course(id),
+    foreign key (fid) references instructor(id)
+);
+
+create table prereq(
+    course_id char(5),
+    prereq_id char(5),
+
+    primary key (course_id, prereq_id),
+    foreign key (course_id) references course(id),
+    foreign key (prereq_id) references course(id)
+);

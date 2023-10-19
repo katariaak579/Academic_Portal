@@ -1,0 +1,12 @@
+Entry number of the  student: 2020CSB1063
+
+Courses the student has completed      Grades    Semester    Year
+
+             CS101                        A           2        2020
+
+Courses the student is currently enrolled in
+
+                  EE101
+
+Current CG is: 9.33
+Total Credits: 6

@@ -1,0 +1,688 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > admin_ui</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: admin_ui (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">admin_ui</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/522)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;import java.io.FileNotFoundException;
+&nbsp;import java.io.UnsupportedEncodingException;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Scanner;
+&nbsp;
+<b class="nc">&nbsp;public class admin_ui{</b>
+&nbsp;    public static void test(Connection c, Statement stmt) throws SQLException, FileNotFoundException, UnsupportedEncodingException {
+&nbsp;        ResultSet ab,rs,rs1;
+<b class="nc">&nbsp;        student_functionalities studentis = new student_functionalities();</b>
+<b class="nc">&nbsp;        faculty_functionalities facultyis= new faculty_functionalities();</b>
+<b class="nc">&nbsp;        admin_functionalities adminis=new admin_functionalities();</b>
+<b class="nc">&nbsp;        String sts=&quot;select * from sysinfo;&quot;;</b>
+<b class="nc">&nbsp;        ab=stmt.executeQuery(sts);</b>
+<b class="nc">&nbsp;        String stsis=&quot;&quot;;</b>
+<b class="nc">&nbsp;        String yr=&quot;&quot;;</b>
+<b class="nc">&nbsp;        String semis=&quot;&quot;;</b>
+<b class="nc">&nbsp;        while (ab.next()){</b>
+<b class="nc">&nbsp;            yr=ab.getString(1);</b>
+<b class="nc">&nbsp;            semis=ab.getString(2);</b>
+<b class="nc">&nbsp;            stsis=ab.getString(3);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;        while (true) {
+<b class="nc">&nbsp;            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;            System.out.flush();</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+&nbsp;
+<b class="nc">&nbsp;            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 1 to Change Semester Status&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 2 to Add/Drop Student&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 3 to Add/Drop Faculty&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 4 to Add/Drop Course&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 5 to View Student List&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 6 to View Faculty List&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 7 to View Course Catalog&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 8 to View Courses Offered&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 9 for View Student Registration&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 10 for Student Graduation&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 11 for Student Transcript Generation&quot;);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Press 12 to Logout&quot;);</b>
+<b class="nc">&nbsp;            Scanner sc = new Scanner(System.in);</b>
+<b class="nc">&nbsp;            System.out.print(&quot;Input: &quot;);</b>
+<b class="nc">&nbsp;            String pick=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            if(pick.equals(&quot;1&quot;)){</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 1 for Pre Semester Begin Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 2 for Course Offering Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 3 for Course Enrollment Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 4 for Semester Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 5 for Grading Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 6 for Updating Student Record Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press 7 for Semester Ended Period&quot;);</b>
+<b class="nc">&nbsp;                System.out.print(&quot;Input: &quot;);</b>
+<b class="nc">&nbsp;                String st=sc.nextLine();</b>
+<b class="nc">&nbsp;                if(st.equals(&quot;1&quot;)){</b>
+<b class="nc">&nbsp;                    stsis=&quot;Pre Semester Begin Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                else if (st.equals(&quot;2&quot;)) {</b>
+<b class="nc">&nbsp;                    stsis=&quot;Course Offering Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                else if (st.equals(&quot;3&quot;)) {</b>
+<b class="nc">&nbsp;                    stsis=&quot;Course Enrollment Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                else if (st.equals(&quot;4&quot;)) {</b>
+<b class="nc">&nbsp;                    stsis=&quot;Pre Semester Begin Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                else if (st.equals(&quot;5&quot;)) {</b>
+<b class="nc">&nbsp;                    stsis=&quot;Semester Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                else if (st.equals(&quot;6&quot;)) {</b>
+<b class="nc">&nbsp;                    stsis=&quot;Updating Student Record Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                    adminis.upt_cgpa(c,stmt);</b>
+<b class="nc">&nbsp;                    adminis.move_courses(c,stmt);</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;                else  {
+<b class="nc">&nbsp;                    stsis=&quot;Semester Ended Period&quot;;</b>
+<b class="nc">&nbsp;                    String chng=&quot;update sysinfo set status=&#39;&quot;+stsis+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(chng);</b>
+<b class="nc">&nbsp;                    String axo=&quot;select * from sysinfo&quot;;</b>
+<b class="nc">&nbsp;                    rs=stmt.executeQuery(axo);</b>
+<b class="nc">&nbsp;                    String yr1=&quot;&quot;;</b>
+<b class="nc">&nbsp;                    String sm=&quot;&quot;;</b>
+<b class="nc">&nbsp;                    while (rs.next()){</b>
+<b class="nc">&nbsp;                        yr=rs.getString(1);</b>
+<b class="nc">&nbsp;                        sm=rs.getString(2);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    int ye=Integer.parseInt(yr);</b>
+<b class="nc">&nbsp;                    int se=Integer.parseInt(sm);</b>
+<b class="nc">&nbsp;                    if(se==1){</b>
+<b class="nc">&nbsp;                        se++;</b>
+&nbsp;                    }
+&nbsp;                    else{
+<b class="nc">&nbsp;                        se--;</b>
+<b class="nc">&nbsp;                        ye++;</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    String upty=&quot;update sysinfo set year=&#39;&quot;+ye+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(upty);</b>
+<b class="nc">&nbsp;                    String upts=&quot;update sysinfo set sem=&#39;&quot;+se+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                    stmt.execute(upts);</b>
+<b class="nc">&nbsp;                    yr=String.valueOf(ye);</b>
+<b class="nc">&nbsp;                    semis=String.valueOf(se);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Updated Succesfully&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;2&quot;)) {</b>
+<b class="nc">&nbsp;                if(stsis.equals(&quot;Pre Semester Begin Period&quot;)) {</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;Enter a to add and r to remove student: &quot;);</b>
+<b class="nc">&nbsp;                    String ar = sc.nextLine();</b>
+<b class="nc">&nbsp;                    if (ar.equals(&quot;a&quot;)) {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter csv for csv and m for manually: &quot;);</b>
+<b class="nc">&nbsp;                        String cs = sc.nextLine();</b>
+<b class="nc">&nbsp;                        if (cs.equals(&quot;m&quot;)) {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Entry number: &quot;);</b>
+<b class="nc">&nbsp;                            String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Name: &quot;);</b>
+<b class="nc">&nbsp;                            String name = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter email: &quot;);</b>
+<b class="nc">&nbsp;                            String email = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter BatchID(Format:DepartmentYear): &quot;);</b>
+<b class="nc">&nbsp;                            String bid = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Login_key add: &quot;);</b>
+<b class="nc">&nbsp;                            String key = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_student(c, stmt, std, name, email, bid, key, 0.0, 0);</b>
+<b class="nc">&nbsp;                        } else {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter file path: &quot;);</b>
+<b class="nc">&nbsp;                            String pth = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_student_csv(c, stmt, pth);</b>
+&nbsp;                        }
+<b class="nc">&nbsp;                    } else {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter Entry number of student to remove: &quot;);</b>
+<b class="nc">&nbsp;                        String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                        adminis.remove_student(c, stmt, std);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                }</b>
+&nbsp;                else{
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Status is not Pre Semester Begin Period. Cannot add or remove Student&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            else if (pick.equals(&quot;3&quot;)) {</b>
+<b class="nc">&nbsp;                if(stsis.equals(&quot;Pre Semester Begin Period&quot;)) {</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;Enter a to add and r to remove faculty: &quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                    String ar = sc.nextLine();</b>
+<b class="nc">&nbsp;                    if (ar.equals(&quot;a&quot;)) {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter csv for csv and m for manually: &quot;);</b>
+<b class="nc">&nbsp;                        String cs = sc.nextLine();</b>
+<b class="nc">&nbsp;                        if (cs.equals(&quot;m&quot;)) {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Faculty_Id: &quot;);</b>
+<b class="nc">&nbsp;                            String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Name: &quot;);</b>
+<b class="nc">&nbsp;                            String name = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter email: &quot;);</b>
+<b class="nc">&nbsp;                            String email = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Department: &quot;);</b>
+<b class="nc">&nbsp;                            String bid = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Login_key: &quot;);</b>
+<b class="nc">&nbsp;                            String key = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_faculty(c, stmt, std, name, email, bid, key);</b>
+<b class="nc">&nbsp;                        } else {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter file path: &quot;);</b>
+<b class="nc">&nbsp;                            String pth = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_faculty_csv(c, stmt, pth);</b>
+&nbsp;                        }
+<b class="nc">&nbsp;                    } else {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter Faculty_id of faculty to remove: &quot;);</b>
+<b class="nc">&nbsp;                        String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                        adminis.remove_faculty(c, stmt, std);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                }</b>
+&nbsp;                else{
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Status is not Pre Semester Begin Period. Cannot add or remove Faculty&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;4&quot;)) {</b>
+<b class="nc">&nbsp;                if(stsis.equals(&quot;Course Offering Period&quot;)) {</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;Enter a to add and r to remove course: &quot;);</b>
+<b class="nc">&nbsp;                    String ar = sc.nextLine();</b>
+<b class="nc">&nbsp;                    if (ar.equals(&quot;a&quot;)) {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter csv for csv and m for manually: &quot;);</b>
+<b class="nc">&nbsp;                        String cs = sc.nextLine();</b>
+<b class="nc">&nbsp;                        if (cs.equals(&quot;m&quot;)) {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Course_Id: &quot;);</b>
+<b class="nc">&nbsp;                            String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Name: &quot;);</b>
+<b class="nc">&nbsp;                            String name = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter l: &quot;);</b>
+<b class="nc">&nbsp;                            int email = sc.nextInt();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter t: &quot;);</b>
+<b class="nc">&nbsp;                            int bid = sc.nextInt();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter p: &quot;);</b>
+<b class="nc">&nbsp;                            int key = sc.nextInt();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter c: &quot;);</b>
+<b class="nc">&nbsp;                            int key1 = sc.nextInt();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Department: &quot;);</b>
+<b class="nc">&nbsp;                            String key2 = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Category: &quot;);</b>
+<b class="nc">&nbsp;                            String key3 = sc.nextLine();</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter Prerequisite(null or Courses sepated by (-)): &quot;);</b>
+<b class="nc">&nbsp;                            String pre = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_course(c, stmt, std, name, email, bid, key, key1, key2, key3, pre);</b>
+<b class="nc">&nbsp;                        } else {</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                            System.out.flush();</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                            System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                            System.out.print(&quot;Enter file path: &quot;);</b>
+<b class="nc">&nbsp;                            String pth = sc.nextLine();</b>
+<b class="nc">&nbsp;                            adminis.add_course_csv(c, stmt, pth);</b>
+&nbsp;
+&nbsp;                        }
+<b class="nc">&nbsp;                    } else {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                        System.out.flush();</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter Faculty_id of course to remove: &quot;);</b>
+<b class="nc">&nbsp;                        String std = sc.nextLine();</b>
+<b class="nc">&nbsp;                        adminis.remove_course(c, stmt, std);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                }</b>
+&nbsp;                else{
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Status is not Course Offering Period. Cannot add or remove course&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;5&quot;)) {</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                String alls=&quot;select * from student&quot;;</b>
+<b class="nc">&nbsp;                rs1=stmt.executeQuery(alls);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;|    Entry Number     |        Name        |          Email           |    Batch_ID        |     Login_key       |     Cgpa           |     Credits_total  |&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot; ******************** ******************** *************************** ******************** ********************* ******************** ********************&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                while (rs1.next()){</b>
+<b class="nc">&nbsp;                    String c_code=rs1.getString(1);</b>
+<b class="nc">&nbsp;                    String c_name=rs1.getString(2);</b>
+<b class="nc">&nbsp;                    String c_l=rs1.getString(3);</b>
+<b class="nc">&nbsp;                    String c_t=rs1.getString(4);</b>
+<b class="nc">&nbsp;                    String c_p=rs1.getString(5);</b>
+<b class="nc">&nbsp;                    String c_c=rs1.getString(6);</b>
+<b class="nc">&nbsp;                    String c_dept=rs1.getString(7);</b>
+&nbsp;
+<b class="nc">&nbsp;                    System.out.printf(&quot;|%-20s|%-20s|%-26s|%-20s|%-20s|%-20s|%-20s|\n&quot;,c_code,c_name,c_l,c_t,c_p,c_c,c_dept);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;6&quot;)) {</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                String alls=&quot;select * from instructor&quot;;</b>
+<b class="nc">&nbsp;                rs1=stmt.executeQuery(alls);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;|    Faculty ID     |        Name        |          Email           |    Department        |     Login_key       |&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot; ******************** ******************** *************************** ******************** ********************* &quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;                while (rs1.next()){</b>
+<b class="nc">&nbsp;                    String c_code=rs1.getString(1);</b>
+<b class="nc">&nbsp;                    String c_name=rs1.getString(2);</b>
+<b class="nc">&nbsp;                    String c_l=rs1.getString(3);</b>
+<b class="nc">&nbsp;                    String c_t=rs1.getString(4);</b>
+<b class="nc">&nbsp;                    String c_p=rs1.getString(5);</b>
+&nbsp;
+<b class="nc">&nbsp;                    System.out.printf(&quot;|%-20s|%-20s|%-26s|%-20s|%-20s|\n&quot;,c_code,c_name,c_l,c_t,c_p);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;7&quot;)) {</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                String abc=&quot;select * from course;&quot;;</b>
+<b class="nc">&nbsp;                rs1=stmt.executeQuery(abc);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;|    Course Code     |        Name        |  L----T----P----C  |    Department_ID   |     Category       |&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot; ******************** ******************** ******************** ******************** ********************&quot;);</b>
+<b class="nc">&nbsp;                while (rs1.next()){</b>
+<b class="nc">&nbsp;                    String c_code=rs1.getString(1);</b>
+<b class="nc">&nbsp;                    String c_name=rs1.getString(2);</b>
+<b class="nc">&nbsp;                    String c_l=rs1.getString(3);</b>
+<b class="nc">&nbsp;                    String c_t=rs1.getString(4);</b>
+<b class="nc">&nbsp;                    String c_p=rs1.getString(5);</b>
+<b class="nc">&nbsp;                    String c_c=rs1.getString(6);</b>
+<b class="nc">&nbsp;                    String c_dept=rs1.getString(7);</b>
+<b class="nc">&nbsp;                    String c_cat=rs1.getString(8);</b>
+<b class="nc">&nbsp;                    System.out.printf(&quot;|%-20s|%-20s|%-5s|%-5s|%-5s|%-5s|%-20s|%-20s|\n&quot;,c_code,c_name,c_l,c_t,c_p,c_c,c_dept,c_cat);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;8&quot;)) {</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                String view=&quot;select * from offering ;&quot;;</b>
+<b class="nc">&nbsp;                rs1=stmt.executeQuery(view);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;|    Course Code     |        Faculty ID  |      Semester      |        Year        |     Minimum Cgpa   |&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot; ******************** ******************** ******************** ******************** ********************&quot;);</b>
+<b class="nc">&nbsp;                while (rs1.next()){</b>
+<b class="nc">&nbsp;                    String crs=rs1.getString(1);</b>
+<b class="nc">&nbsp;                    String c_name=rs1.getString(2);</b>
+<b class="nc">&nbsp;                    String c_l=rs1.getString(3);</b>
+<b class="nc">&nbsp;                    String c_t=rs1.getString(4);</b>
+<b class="nc">&nbsp;                    String c_p=rs1.getString(5);</b>
+<b class="nc">&nbsp;                    System.out.printf(&quot;|%-20s|%-20s|%-20s|%-20s|%-20s|\n&quot;,crs,c_name,c_l,c_t,c_p);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;            else if (pick.equals(&quot;9&quot;)) {</b>
+&nbsp;
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                System.out.print(&quot;Enter Entry Number of the Student:&quot;);</b>
+<b class="nc">&nbsp;                String ent=sc.nextLine();</b>
+<b class="nc">&nbsp;                String add2=&quot;_current_course&quot;;</b>
+<b class="nc">&nbsp;                String tname3 = &quot;\&quot;&quot;+ent+add2+&quot;\&quot;&quot;;</b>
+<b class="nc">&nbsp;                String chk=&quot;select count(*) from student where entry_number=&#39;&quot;+ent+&quot;&#39;;&quot;;</b>
+<b class="nc">&nbsp;                rs=stmt.executeQuery(chk);</b>
+<b class="nc">&nbsp;                String curr=&quot;&quot;;</b>
+<b class="nc">&nbsp;                while (rs.next()){</b>
+<b class="nc">&nbsp;                    curr=rs.getString(1);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                if(curr.equals(&quot;0&quot;)){</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Student not exist&quot;);</b>
+&nbsp;                }
+&nbsp;                else{
+<b class="nc">&nbsp;                    String crsis=&quot;select courses from &quot;+tname3+&quot;;&quot;;</b>
+<b class="nc">&nbsp;                    rs1=stmt.executeQuery(crsis);</b>
+<b class="nc">&nbsp;                    while (rs1.next()){</b>
+<b class="nc">&nbsp;                        String a=rs.getString(1);</b>
+<b class="nc">&nbsp;                        System.out.println(&quot;Course Codes: &quot;+a);</b>
+<b class="nc">&nbsp;                    }</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;10&quot;)) {</b>
+<b class="nc">&nbsp;                if(stsis.equals(&quot;Semester Ended Period&quot;)) {</b>
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot; + yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot; + semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot; + stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    if (stsis.equals(&quot;Semester Ended Period&quot;)) {</b>
+<b class="nc">&nbsp;                        System.out.print(&quot;Enter the Entry Number of Student: &quot;);</b>
+<b class="nc">&nbsp;                        String ent = sc.nextLine();</b>
+<b class="nc">&nbsp;                        adminis.student_graduate(c, stmt, ent);</b>
+<b class="nc">&nbsp;                    }</b>
+&nbsp;                }
+&nbsp;                else{
+<b class="nc">&nbsp;                    System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                    System.out.flush();</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                    System.out.println(&quot;Student cannot graduate as it is not Semester Ended Period&quot;);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                System.out.println(&quot;Press any key to continue&quot;);</b>
+<b class="nc">&nbsp;                String x=sc.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;            } else if (pick.equals(&quot;11&quot;)) {</b>
+<b class="nc">&nbsp;                System.out.print(&quot;\033[H\033[2J&quot;);</b>
+<b class="nc">&nbsp;                System.out.flush();</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Welcome to AIMS Student UI Page&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Username: Admin&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Year: &quot;+yr);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester: &quot;+semis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Current Semester Status: &quot;+stsis);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;&quot;);</b>
+<b class="nc">&nbsp;                System.out.println(&quot;Enter Entry Number: &quot;);</b>
+<b class="nc">&nbsp;                String alk=sc.nextLine();</b>
+<b class="nc">&nbsp;                adminis.generate_transcript(c,stmt,alk);</b>
+&nbsp;            } else {
+&nbsp;                break;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-07 23:21</div>
+</div>
+</body>
+</html>
